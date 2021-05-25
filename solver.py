@@ -46,7 +46,27 @@ def get_valid_characters(dictionary=fname):
       letter_list.append(uchars)
   return letter_list
 
+def get_total_points(words):
+  points=0
+  for word in words:
+    if len(word)==4:
+      #4 letter words are only worth 1 point
+      points+=1
+    else:
+      #Otherwise it is worth the length of the word
+      points+=len(word)
+    if len(unique_chars_in_word(word))==7:
+      #Panagram is worth 7 bonus points
+      points+=7
+  return points
+    
 if __name__=="__main__":
   if len(sys.argv)>1:
     words=get_all_words(sys.argv[1])
-  
+
+  print("=============================")
+  for word in words:
+    print(word)
+
+  print("=============================")
+  print("Total available points:" + str(get_total_points(words)))
